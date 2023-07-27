@@ -2,4 +2,4 @@
 #
 
 #run installation
-sudo ./worplet.sh
+sudo ./wordpress.sh
