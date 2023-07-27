@@ -25,7 +25,8 @@ echo ""
 printf -- "\e[0m\e[37m-> Installation de wordpress\e[0m";
 printf -- "\n";
 move_wordpress_directory () {
-  sudo mv wordpress /var/www/html/puffme 1>>$logfile 2>>$errlog
+  sudo mv wordpress /var/www/html/wordpress 1>>$logfile 2>>$errlog
+  sudo mv /var/www/html/wordpress /var/www/html/puffme 1>>$logfile 2>>$errlog
   printf -- "\e[90mWordpress installé\e[22m"
 }
 move_wordpress_directory
