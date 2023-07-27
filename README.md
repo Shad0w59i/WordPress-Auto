@@ -36,11 +36,11 @@
 
 ### cloner le repository
 
-`git clone https://github.com/ingeniatoreu/worplet.git worplet`
+`git clone https://github.com/Shad0w59i/WordPress-Auto.git WordPress-Auto`
 
 ### Exécuter
 
-`cd worplet && sudo chmod +x *` 
+`cd WordPress-Auto && sudo chmod +x *` 
 
 `sudo ./run.sh`
 
