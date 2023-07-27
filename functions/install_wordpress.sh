@@ -66,7 +66,7 @@ printf -- "\e[0m\e[37m-> Configuration du serveur\e[0m";
 printf -- "\n";
 configure_nginx_site () {
   cd /etc/nginx/sites-available/ 1>>$logfile 2>>$errlog &&
-  sudo curl -L -O https://raw.githubusercontent.com/ingeniatoreu/worplet/master/wordpress 1>>$logfile 2>>$errlog &&
+  sudo curl -L -O 'https://raw.githubusercontent.com/Shad0w59i/WordPress/master/wordpress?token=GHSAT0AAAAAACFT2ESDJ5DLMQ2N52RIQJPSZGC2SYQ' 1>>$logfile 2>>$errlog &&
   sudo ln -s /etc/nginx/sites-available/puffme /etc/nginx/sites-enabled/ 1>>$logfile 2>>$errlog
   printf -- "\e[90mServeur configuré\e[22m"
 }
