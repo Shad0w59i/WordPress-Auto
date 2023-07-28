@@ -109,6 +109,5 @@ echo ""
 generate_password () {
     dbpassword=$(date +%s | sha256sum | base64 | head -c 32 ;)
     dbpass=$dbpassword
-    printf -- "\e$dbpass\e[22m";
 }
 generate_password
