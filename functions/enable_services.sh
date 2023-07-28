@@ -5,7 +5,7 @@ printf -- "\n";
 enable_services () {
 	sudo systemctl enable nginx.service 1>>$logfile 2>>$errlog &&
 	sudo systemctl enable mariadb.service 1>>$logfile 2>>$errlog &&
-	sudo systemctl enable php8.2-fpm.service 1>>$logfile 2>>$errlog &&
+	sudo systemctl enable php8.2-fpm.service 1>>$logfile 2>>$errlog
 	printf -- "\e[90mRedémarrage des services : nginx, mariadb, php\e[22m"
 }
 enable_services

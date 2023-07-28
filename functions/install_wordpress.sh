@@ -3,7 +3,7 @@ echo ""
 printf -- "\e[0m\e[37m-> Téléchargement de wordpress\e[0m";
 printf -- "\n";
 get_wordpress () {
-  cd /tmp && wget https://wordpress.org/latest.tar.gz 1>>$logfile 2>>$errlog
+  cd /tmp && wget https://wordpress.org/latest.zip 1>>$logfile 2>>$errlog
   printf -- "\e[90mTéléchargement de la dernière version de wordpress\e[22m"
 }
 get_wordpress
@@ -14,7 +14,7 @@ echo ""
 printf -- "\e[0m\e[37m-> Décompression des fichiers\e[0m";
 printf -- "\n";
 decompress_files () {
-  tar -zxvf latest.tar.gz 1>>$logfile 2>>$errlog
+  sudo unzip latest.zip -d /var/www/html/ 1>>$logfile 2>>$errlog
   printf -- "\e[90mFichiers décompressés\e[22m"
 }
 decompress_files
@@ -25,23 +25,11 @@ echo ""
 printf -- "\e[0m\e[37m-> Installation de wordpress\e[0m";
 printf -- "\n";
 move_wordpress_directory () {
-  sudo mv wordpress /var/www/html/wordpress 1>>$logfile 2>>$errlog
+  cd /var/www/html 1>>$logfile 2>>$errlog
   sudo mv /var/www/html/wordpress /var/www/html/puffme 1>>$logfile 2>>$errlog
   printf -- "\e[90mWordpress installé\e[22m"
 }
 move_wordpress_directory
-echo ""
-echo ""
-
-#set privilegies
-printf -- "\e[0m\e[37m-> Définition des privilèges\e[0m";
-printf -- "\n";
-set_privilegies () {
-  sudo chown -R www-data:www-data /var/www/html/puffme/ 1>>$logfile 2>>$errlog &&
-  sudo chmod -R 755 /var/www/html/puffme/ 1>>$logfile 2>>$errlog
-  printf -- "\e[90mPrivilèges effectués\e[22m"
-}
-set_privilegies
 echo ""
 echo ""
 
@@ -53,13 +41,26 @@ configure_wordpress () {
   sudo sed -i "s/^define( 'DB_NAME', 'database_name_here' );/define( 'DB_NAME', 'puffme' );/" /var/www/html/puffme/wp-config.php 1>>$logfile 2>>$errlog &&
   sudo sed -i "s/^define( 'DB_USER', 'username_here' );/define( 'DB_USER', 'wppuffme' );/" /var/www/html/puffme/wp-config.php 1>>$logfile 2>>$errlog &&
   sudo sed -i "s/^define( 'DB_PASSWORD', 'password_here' );/define( 'DB_PASSWORD', '${dbpass}' );/" /var/www/html/puffme/wp-config.php 1>>$logfile 2>>$errlog &&
-  sudo sed -i "s/^$table_prefix = 'wp_';/$table_prefix = 'pm_';/" /var/www/html/puffme/wp-config.php 1>>$logfile 2>>$errlog &&
+  sudo sed -i "s~^\$table_prefix = 'wp_';~\$table_prefix = 'pm_';~" /var/www/html/puffme/wp-config.php 1>>$logfile 2>>$errlog &&
   SALT=$(curl -L https://api.wordpress.org/secret-key/1.1/salt/)
-  STRING='Mettez votre phrase unique ici' 1>>$logfile 2>>$errlog
+  STRING='put your unique phrase here' 1>>$logfile 2>>$errlog
   printf '%s\n' "g/$STRING/d" a "$SALT" . w | ed -s /var/www/html/puffme/wp-config.php 1>>$logfile 2>>$errlog
   printf -- "\e[90mWordpress configuré\e[22m"
 }
 configure_wordpress
+echo ""
+echo ""
+
+#set privilegies
+printf -- "\e[0m\e[37m-> Définition des privilèges\e[0m";
+printf -- "\n";
+set_privilegies () {
+  sudo chmod 640 /var/www/html/puffme/wp-config.php 1>>$logfile 2>>$errlog &&
+  sudo chown www-data:www-data /var/www/html/puffme/ -R 1>>$logfile 2>>$errlog
+  # sudo chmod -R 755 /var/www/html/puffme/ 1>>$logfile 2>>$errlog
+  printf -- "\e[90mPrivilèges effectués\e[22m"
+}
+set_privilegies
 echo ""
 echo ""
 
@@ -68,9 +69,10 @@ printf -- "\e[0m\e[37m-> Configuration du serveur\e[0m";
 printf -- "\n";
 configure_nginx_site () {
   sudo rm -r /etc/nginx/sites-available/default && sudo rm -r  /etc/nginx/sites-enabled/default 1>>$logfile 2>>$errlog
-  cd /etc/nginx/sites-available/ 1>>$logfile 2>>$errlog &&
-  sudo curl -L -O https://raw.githubusercontent.com/Shad0w59i/WordPress-Auto/master/puffme 1>>$logfile 2>>$errlog &&
-  sudo ln -s /etc/nginx/sites-available/puffme /etc/nginx/sites-enabled/ 1>>$logfile 2>>$errlog
+  cd /etc/nginx/conf.d/ 1>>$logfile 2>>$errlog &&
+  sudo curl -L -O https://raw.githubusercontent.com/Shad0w59i/WordPress-Auto/master/puffme.shop.conf 1>>$logfile 2>>$errlog &&
+  cd 1>>$logfile 2>>$errlog
+  # sudo ln -s /etc/nginx/sites-available/puffme /etc/nginx/sites-enabled/ 1>>$logfile 2>>$errlog
   printf -- "\e[90mServeur configuré\e[22m"
 }
 configure_nginx_site
@@ -99,7 +101,7 @@ echo ""
 printf -- "\e[0m\e[37m-> Configuration du domaine\e[0m";
 printf -- "\n";
 configure_domain () {
-  sudo sed -i "s|YOURDOMAINNAME|$server$serverip|g" "/etc/nginx/sites-available/puffme" 1>>$logfile 2>>$errlog
+  sudo sed -i "s|YOURDOMAINNAME|$server$serverip|g" "/etc/nginx/conf.d/puffme.shop.conf" 1>>$logfile 2>>$errlog
   printf -- "\e[90mDomaine configuré\e[22m"
 }
 configure_domain
