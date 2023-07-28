@@ -53,6 +53,7 @@ configure_wordpress () {
   sudo sed -i "s/^define( 'DB_NAME', 'database_name_here' );/define( 'DB_NAME', 'puffme' );/" /var/www/html/puffme/wp-config.php 1>>$logfile 2>>$errlog &&
   sudo sed -i "s/^define( 'DB_USER', 'username_here' );/define( 'DB_USER', 'wppuffme' );/" /var/www/html/puffme/wp-config.php 1>>$logfile 2>>$errlog &&
   sudo sed -i "s/^define( 'DB_PASSWORD', 'password_here' );/define( 'DB_PASSWORD', '${dbpass}' );/" /var/www/html/puffme/wp-config.php 1>>$logfile 2>>$errlog &&
+  sudo sed -i "s/^$table_prefix = 'wp_';/$table_prefix = 'pm_';/" /var/www/html/puffme/wp-config.php 1>>$logfile 2>>$errlog &&
   SALT=$(curl -L https://api.wordpress.org/secret-key/1.1/salt/)
   STRING='Mettez votre phrase unique ici' 1>>$logfile 2>>$errlog
   printf '%s\n' "g/$STRING/d" a "$SALT" . w | ed -s /var/www/html/puffme/wp-config.php 1>>$logfile 2>>$errlog
