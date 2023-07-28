@@ -28,9 +28,9 @@ sudo ufw allow 22
 yes | sudo ufw enable
 
 #remove dependencies
-sudo apt-get -y remove nginx php7.2-fpm php7.2-common php7.2-mbstring php7.2-xmlrpc php7.2-gd php7.2-xml php7.2-mysql php7.2-cli php7.2-zip php7.2-curl php7.2-soap php7.2-intl php7.2-ldap mariadb-server mariadb-client
-sudo apt-get -y autoremove nginx php7.2-fpm php7.2-common php7.2-mbstring php7.2-xmlrpc php7.2-gd php7.2-xml php7.2-mysql php7.2-cli php7.2-zip php7.2-curl php7.2-soap php7.2-intl php7.2-ldap mariadb-server mariadb-client
-sudo apt-get -y purge nginx php7.2-fpm php7.2-common php7.2-mbstring php7.2-xmlrpc php7.2-gd php7.2-xml php7.2-mysql php7.2-cli php7.2-zip php7.2-curl php7.2-soap php7.2-intl php7.2-ldap mariadb-server mariadb-client
+sudo apt-get -y remove nginx php8.2-fpm php8.2-common php8.2-mbstring php8.2-xmlrpc php8.2-gd php8.2-xml php8.2-mysql php8.2-cli php8.2-zip php8.2-curl php8.2-soap php8.2-intl php8.2-ldap mariadb-server mariadb-client
+sudo apt-get -y autoremove nginx php8.2-fpm php8.2-common php8.2-mbstring php8.2-xmlrpc php8.2-gd php8.2-xml php8.2-mysql php8.2-cli php8.2-zip php8.2-curl php8.2-soap php8.2-intl php8.2-ldap mariadb-server mariadb-client
+sudo apt-get -y purge nginx php8.2-fpm php8.2-common php8.2-mbstring php8.2-xmlrpc php8.2-gd php8.2-xml php8.2-mysql php8.2-cli php8.2-zip php8.2-curl php8.2-soap php8.2-intl php8.2-ldap mariadb-server mariadb-client
 sudo rm -rf /etc/nginx
 sudo rm -rf /var/www
 

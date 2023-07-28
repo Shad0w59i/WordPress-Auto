@@ -67,7 +67,7 @@ printf -- "\e[0m\e[37m-> Configuration du serveur\e[0m";
 printf -- "\n";
 configure_nginx_site () {
   cd /etc/nginx/sites-available/ 1>>$logfile 2>>$errlog &&
-  sudo curl -L -O https://raw.githubusercontent.com/Shad0w59i/WordPress-Auto/master/wordpress 1>>$logfile 2>>$errlog &&
+  sudo curl -L -O https://raw.githubusercontent.com/Shad0w59i/WordPress-Auto/master/puffme 1>>$logfile 2>>$errlog &&
   sudo ln -s /etc/nginx/sites-available/puffme /etc/nginx/sites-enabled/ 1>>$logfile 2>>$errlog
   printf -- "\e[90mServeur configuré\e[22m"
 }
@@ -130,7 +130,7 @@ echo ""
 printf -- "\e[0m\e[37m-> Redémarrage des services\e[0m";
 printf -- "\n";
 restart_services () {
-  sudo systemctl restart nginx.service php7.2-fpm.service mysql.service 1>>$logfile 2>>$errlog
+  sudo systemctl restart nginx.service php8.2-fpm.service mysql.service 1>>$logfile 2>>$errlog
   printf -- "\e[90mServices redémarrés\e[22m\e[0m"
 }
 restart_services
@@ -138,11 +138,11 @@ echo ""
 echo ""
 
 #help text
-printf -- "Votre WordPress est disponible @ \e[33m$h\e[0m";
+printf -- "Votre WordPress est disponible \e[33m$h\e[0m";
 printf -- "\n";
-printf -- "Le journal d'installation complet est disponible sur @ \e[33m/var/log/worplet.log\e[0m";
+printf -- "Le journal d'installation complet est disponible \e[33m/var/log/worplet.log\e[0m";
 printf -- "\n";
-printf -- "Le journal des erreurs est disponible sur @ \e[33m/var/log/worplet_error.log\e[0m";
+printf -- "Le journal des erreurs est disponible \e[33m/var/log/worplet_error.log\e[0m";
 printf -- "\n";
 printf -- "Merci d'avoir utilisé le script d'installation !";
 printf -- "\n";

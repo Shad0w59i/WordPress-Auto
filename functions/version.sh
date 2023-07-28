@@ -1,5 +1,5 @@
 echo "==================================================="
-echo "WordPress"
-echo "Version 1.0"
+echo "Start WordPress Auto"
+echo "Version 2.0"
 echo "By: Shad0w59i"
 echo "==================================================="

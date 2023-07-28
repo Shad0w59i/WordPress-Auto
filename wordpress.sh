@@ -3,12 +3,18 @@
 
 #output handling
 source functions/output_handling.sh
+echo ""
+echo -ne '\e[32m##______________________(5%)\r\e[0m'
+echo ""
+echo ""
+echo ""
+sleep 1
 
 #install dependencies
 source functions/install_dependencies.sh
 echo ""
 echo ""
-echo -ne '\e[32m####______________________(25%)\r\e[0m'
+echo -ne '\e[32m###______________________(15%)\r\e[0m'
 echo ""
 echo ""
 sleep 1
@@ -16,7 +22,7 @@ sleep 1
 #configure
 source functions/config.sh
 echo ""
-echo -ne '\e[32m###______________________(15%)\r\e[0m'
+echo -ne '\e[32m####______________________(25%)\r\e[0m'
 echo ""
 echo ""
 echo ""
