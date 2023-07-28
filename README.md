@@ -4,7 +4,7 @@
 
 ### Conditions préalables
 
-- Serveur VPS avec accès root exécutant Ubuntu 23.04 LTS
+- Serveur VPS avec accès root exécutant Ubuntu 20.04, 21.04, 22.04 LTS **(Ne fonctionne pas avec 23.04 LTS)**
 - Domaine enregistré avec un enregistrement IPv4 pointant vers le serveur VPS
 
 &nbsp;
