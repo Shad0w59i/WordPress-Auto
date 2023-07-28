@@ -4,21 +4,21 @@
 
 ### Conditions préalables
 
-- Serveur VPS avec accès root exécutant Ubuntu 23.04 LTS
+- Serveur VPS avec accès root exécutant Ubuntu 20.04, 21.04, 22.04 LTS **(Ne fonctionne pas avec 23.04 LTS)**
 - Domaine enregistré avec un enregistrement IPv4 pointant vers le serveur VPS
 
 &nbsp;
 
 ### Description
 
-- Script shell qui permet une configuration facile d'un serveur Linux avec PHP, MySQL, Nginx, WordPress, Domain et SSL.Tout ce dont vous avez besoin pour démarrer rapidement votre développement et ignorer le travail manuel de configuration du serveur.
+- Script shell qui permet une configuration facile d'un serveur Linux avec Php8.2, MySQL, Nginx, WordPress, Domain et SSL. Tout ce dont vous avez besoin pour démarrer rapidement votre développement et ignorer le travail manuel de configuration du serveur.
 
 &nbsp;
 
 ### Résultats
 
 - Le serveur VPS s'exécutera sur la dernière installation WordPress
-- Le serveur VPS installera PHP, MySQL et NGINX
+- Le serveur VPS installera Php8.2, MySQL et NGINX
 - Le serveur VPS créera et remplira une nouvelle base de données MySQL
 - Le serveur VPS créera et configurera tous les services sans interaction
 - Le serveur VPS configurera le domaine et installera un certificat SSL
