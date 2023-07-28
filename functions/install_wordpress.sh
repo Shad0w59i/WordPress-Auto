@@ -98,7 +98,7 @@ echo ""
 printf -- "\e[0m\e[37m-> Configuration du domaine\e[0m";
 printf -- "\n";
 configure_domain () {
-  sudo sed -i "s|YOURDOMAINNAME|$server$serverip|g" "/etc/nginx/sites-available/puffme" 1>>$logfile 2>>$errlog &&
+  sudo sed -i "s|YOURDOMAINNAME|$server$serverip|g" "/etc/nginx/sites-available/puffme" 1>>$logfile 2>>$errlog
   printf -- "\e[90mDomaine configuré\e[22m"
 }
 configure_domain
@@ -139,7 +139,7 @@ echo ""
 echo ""
 
 #help text
-printf -- "Votre WordPress est disponible \e[33m$h\e[0m";
+printf -- "Votre WordPress est disponible \e[33mhttps://$h\e[0m";
 printf -- "\n";
 printf -- "Le journal d'installation complet est disponible \e[33m/var/log/worplet.log\e[0m";
 printf -- "\n";
