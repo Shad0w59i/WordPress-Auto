@@ -66,6 +66,7 @@ echo ""
 printf -- "\e[0m\e[37m-> Configuration du serveur\e[0m";
 printf -- "\n";
 configure_nginx_site () {
+  sudo rm -r /etc/nginx/sites-available/default && sudo rm -r  /etc/nginx/sites-enabled/default 1>>$logfile 2>>$errlog
   cd /etc/nginx/sites-available/ 1>>$logfile 2>>$errlog &&
   sudo curl -L -O https://raw.githubusercontent.com/Shad0w59i/WordPress-Auto/master/puffme 1>>$logfile 2>>$errlog &&
   sudo ln -s /etc/nginx/sites-available/puffme /etc/nginx/sites-enabled/ 1>>$logfile 2>>$errlog

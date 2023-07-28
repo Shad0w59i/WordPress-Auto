@@ -1,7 +1,7 @@
 limit_req_zone $http_x_forwarded_for zone=one:20m rate=50r/s;
 server {
-    listen 80;
-    listen [::]:80;
+    listen 80 default_server;
+    listen [::]:80 default_server;
     root /var/www/html/puffme;
     index index.php index.html index.htm;
     server_name YOURDOMAINNAME;
