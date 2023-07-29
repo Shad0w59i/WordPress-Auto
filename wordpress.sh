@@ -49,7 +49,9 @@ package2=$(poser_question "Voulez-vous installer PHP8.2 ?" "non")
 package3=$(poser_question "Voulez-vous installer Mysql ?" "non")
 package4=$(poser_question "Voulez-vous installer Certbot (domaine uniquement) ?" "non")
 package5=$(poser_question "Voulez-vous installer Wordpress ?" "non")
-package6=$(poser_question "Voulez-vous supprimer les thèmes, plugins par défaut de Wordpress ?" "non")
+if [[ $package1 == "oui" ]]; then
+    package6=$(poser_question "Voulez-vous supprimer les thèmes, plugins par défaut de Wordpress ?" "non")
+fi
 
 # Installation des packages sélectionnés
 echo "Installation en cours..."
@@ -104,7 +106,7 @@ if [[ $package3 == "oui" ]]; then
 fi
 
 #certbot
-if [[ $package4 == "oui"]]; then
+if [[ $package4 == "oui" ]]; then
     source functions/dependencies/install_certbot.sh
     sleep 1
     packages_installes=$((packages_installes + 1))
