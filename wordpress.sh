@@ -27,11 +27,10 @@ afficher_message_accueil() {
 # Fonction pour poser une question avec une liste d'options
 poser_question() {
     local question="$1"
-    local default_value=""
-    shift 2
+    shift
     local options=()
     for option in "$@"; do
-        options+=("$option" "$default_value")
+        options+=("$option" "")
     done
     local choix=$(whiptail --title "Question" --separate-output --checklist "$question" 20 60 10 "${options[@]}" 3>&1 1>&2 2>&3)
     echo "$choix"
@@ -66,21 +65,25 @@ afficher_message_accueil
 #     package6=$(poser_question "Voulez-vous supprimer les thèmes, plugins par défaut de Wordpress ?" "non")
 # fi
 
-choices=$(poser_question "Sélectionnez les packages à installer :" "off" \
+choices=$(poser_question "Sélectionnez les packages à installer :" \
           "Nginx" \
           "PHP8.2" \
           "Mysql" \
           "Certbot" \
           "Wordpress")
 
+echo "Valeur : $choices"
+
 # Vérifier si Wordpress a été sélectionné
 if echo "$choices" | grep -q "Wordpress"; then
     # Poser la question sur la suppression des thèmes et plugins par défaut
     extra_choice=$(whiptail --title "Question" --yesno "Supprimer les thèmes et plugins par défaut de Wordpress ?" 10 60 3>&1 1>&2 2>&3)
     if [ "$?" -eq 0 ]; then
-        choices="$choices Extra"
+        choices="$extra_choice Extra"
     fi
 fi
+
+echo "Valeur : $choices"
 
 # Installation des packages sélectionnés
 echo "Installation en cours..."
