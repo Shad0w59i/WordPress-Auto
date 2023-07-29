@@ -30,7 +30,7 @@ poser_question() {
     shift
     local options=()
     for option in "$@"; do
-        options+=("$option" "")
+        options+=("$option" "" off)
     done
     local choix=$(whiptail --title "Question" --separate-output --checklist "$question" 20 60 10 "${options[@]}" 3>&1 1>&2 2>&3)
     echo "$choix"
