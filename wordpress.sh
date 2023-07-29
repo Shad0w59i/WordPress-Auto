@@ -195,13 +195,9 @@ fi
 
 echo "*********************************************************************************"
 echo "Informations sur le serveur";
-echo "\n";
 echo "vCPU: $cpu";
-echo "\n";
 echo "\e[RAM: $memorytotal Mb";
-echo "\n";
 echo "\e[STOCKAGE: $storagetotal";
-echo "\n";
 echo "*********************************************************************************"
 
 if echo "$choices" | grep -q "Wordpress"; then
@@ -217,6 +213,12 @@ fi
 
 if echo "$choices" | grep -q "PHP8.2"; then
     echo "version de PHP installée : PHP8.2"
+    echo "Configuration :"
+    echo "cgi.fix_pathinfo fixé à 0"
+	echo "max_execution_time fixé à 360"
+	echo "limite_mémoire fixée à 256M"
+	echo "upload_max_filesize fixé à 64M"
+	echo "post_max_size fixé à 64M"
     echo "*********************************************************************************"
 fi
 
