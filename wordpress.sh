@@ -27,9 +27,13 @@ afficher_message_accueil() {
 # Fonction pour poser une question avec une liste d'options
 poser_question() {
     local question="$1"
-    shift
-    local options=("$@")
-    local choix=$(whiptail --title "Question" --checklist "$question" 20 60 10 "${options[@]}" 3>&1 1>&2 2>&3)
+    local default_value="$2"
+    shift 2
+    local options=()
+    for option in "$@"; do
+        options+=("$option" "$default_value")
+    done
+    local choix=$(whiptail --title "Question" --separate-output --checklist "$question" 20 60 10 "${options[@]}" 3>&1 1>&2 2>&3)
     echo "$choix"
 }
 
