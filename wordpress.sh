@@ -14,10 +14,10 @@ echo "                                                                          
 echo "                                                                                 "
 
 #output handling
-source functions/output_handling.sh
+source functions/output_ha@ndling.sh
+echo ""
 echo ""
 echo -ne '\e[32m##______________________(5%)\r\e[0m'
-echo ""
 echo ""
 echo ""
 sleep 1
@@ -34,8 +34,8 @@ sleep 1
 #configure
 source functions/config.sh
 echo ""
-echo -ne '\e[32m####______________________(25%)\r\e[0m'
 echo ""
+echo -ne '\e[32m####______________________(25%)\r\e[0m'
 echo ""
 echo ""
 sleep 1
@@ -107,20 +107,24 @@ sleep 1
 source functions/create_database.sh
 echo ""
 echo ""
-echo -ne '\e[32m###################_______(95%)\r\e[0m'
+echo -ne '\e[32m###################_______(90%)\r\e[0m'
 echo ""
 echo ""
 sleep 1
 
 #install wordpress
 source functions/install_wordpress.sh
-echo -ne '\e[32m######################### (100%)\r\e[0m'
+echo ""
+echo ""
+echo -ne '\e[32m#####################_____(95%)\r\e[0m'
 echo ""
 echo ""
 sleep 1
 
-#remove default Plugins, Themes, ..., wordpress
+#remove default Plugins, Themes wordpress
 source functions/remove_default_wordpress.sh
+echo ""
+echo ""
 echo -ne '\e[32m######################### (100%)\r\e[0m'
 echo ""
 echo ""
