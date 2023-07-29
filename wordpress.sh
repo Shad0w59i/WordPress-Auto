@@ -18,10 +18,19 @@ afficher_message_accueil() {
 }
 
 # Fonction pour poser une question avec une réponse par défaut
+# poser_question() {
+#     read -p "$1 [$2]: " reponse
+#     reponse=${reponse:-$2}
+#     echo "$reponse"
+# }
+
+# Fonction pour poser une question avec une liste d'options
 poser_question() {
-    read -p "$1 [$2]: " reponse
-    reponse=${reponse:-$2}
-    echo "$reponse"
+    local question="$1"
+    shift
+    local options=("$@")
+    whiptail --title "Question" --yesno "$question" 10 60 3 "${options[@]}" 2>&1 >/dev/tty
+    echo $?
 }
 
 # Fonction pour afficher le chargement en pourcentage
@@ -55,7 +64,6 @@ fi
 
 # Installation des packages sélectionnés
 echo "Installation en cours..."
-echo
 
 total_packages=14
 packages_installes=0
