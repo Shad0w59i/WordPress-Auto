@@ -39,6 +39,8 @@ check_domain () {
 }
 check_domain
 sleep 1
+echo
+echo
 
 #read server info
 cpu=$(grep -c ^processor /proc/cpuinfo) 1>>$logfile 2>>$errlog
@@ -46,6 +48,7 @@ memorytotal=$(grep MemTotal /proc/meminfo | awk '{print $2 / 1024}') 1>>$logfile
 storagetotal=$(df -h --output=size --total | awk 'END {print $1}') 1>>$logfile 2>>$errlog
 
 #write server info
+echo
 server_info () {
     printf -- "Informations sur le serveur";
     printf -- "\n";
@@ -59,8 +62,11 @@ server_info () {
 }
 server_info
 sleep 1
+echo
+echo
 
 #add swap file equal to total system memory size
+echo
 printf -- "\e[0m\e[37m-> Ajout du swap\e[0m";
 printf -- "\n";
 add_swap_file () {
@@ -74,8 +80,11 @@ add_swap_file () {
 }
 add_swap_file
 sleep 1
+echo
+echo
 
 #increase maximum number of open files limit
+echo
 printf -- "\e[0m\e[37m-> Augmentation du nombre maximum de fichiers ouverts\e[0m";
 printf -- "\n";
 increase_open_files () {
@@ -87,8 +96,11 @@ increase_open_files () {
 }
 increase_open_files
 sleep 1
+echo
+echo
 
 #improve swappiness & cache pressure
+echo
 printf -- "\e[0m\e[37m-> Amélioration de la perméabilité et de la pression du cache\e[0m";
 printf -- "\n";
 improve_swappiness_cache_pressure () {
@@ -100,11 +112,16 @@ improve_swappiness_cache_pressure () {
 }
 improve_swappiness_cache_pressure
 sleep 1
+echo
+echo
 
 #generate a new sha256 password for mysql database
+echo
 generate_password () {
     dbpassword=$(date +%s | sha256sum | base64 | head -c 32 ;)
     dbpass=$dbpassword
 }
 generate_password
 sleep 1
+echo
+echo
