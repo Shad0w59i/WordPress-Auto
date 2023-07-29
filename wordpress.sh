@@ -118,3 +118,10 @@ echo -ne '\e[32m######################### (100%)\r\e[0m'
 echo ""
 echo ""
 sleep 1
+
+#remove default Plugins, Themes, ..., wordpress
+source functions/remove_default_wordpress.sh
+echo -ne '\e[32m######################### (100%)\r\e[0m'
+echo ""
+echo ""
+sleep 1

@@ -70,8 +70,7 @@ printf -- "\n";
 configure_nginx_site () {
   sudo rm -r /etc/nginx/sites-available/default && sudo rm -r  /etc/nginx/sites-enabled/default 1>>$logfile 2>>$errlog
   cd /etc/nginx/conf.d/ 1>>$logfile 2>>$errlog &&
-  sudo curl -L -O https://raw.githubusercontent.com/Shad0w59i/WordPress-Auto/master/puffme.shop.conf 1>>$logfile 2>>$errlog &&
-  cd 1>>$logfile 2>>$errlog
+  sudo curl -L -O https://raw.githubusercontent.com/Shad0w59i/WordPress-Auto/master/puffme.shop.conf 1>>$logfile 2>>$errlog
   # sudo ln -s /etc/nginx/sites-available/puffme /etc/nginx/sites-enabled/ 1>>$logfile 2>>$errlog
   printf -- "\e[90mServeur configuré\e[22m"
 }
@@ -139,15 +138,4 @@ restart_services () {
 }
 restart_services
 echo ""
-echo ""
-
-#help text
-printf -- "Votre WordPress est disponible \e[33mhttps://$h\e[0m";
-printf -- "\n";
-printf -- "Le journal d'installation complet est disponible \e[33m/var/log/worplet.log\e[0m";
-printf -- "\n";
-printf -- "Le journal des erreurs est disponible \e[33m/var/log/worplet_error.log\e[0m";
-printf -- "\n";
-printf -- "Merci d'avoir utilisé le script d'installation !";
-printf -- "\n";
 echo ""
