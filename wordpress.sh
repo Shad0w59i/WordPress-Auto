@@ -64,7 +64,9 @@ source functions/output_handling.sh
 sleep 1
 packages_installes=$((packages_installes + 1))
 pourcentage=$((packages_installes * 100 / total_packages))
-printf ""
+sleep 1
+printf "Status"
+sleep 1
 afficher_chargement $pourcentage
 
 #install dependencies
@@ -72,7 +74,9 @@ source functions/dependencies/install_dependencies.sh
 sleep 1
 packages_installes=$((packages_installes + 1))
 pourcentage=$((packages_installes * 100 / total_packages))
-printf ""
+sleep 1
+printf "Status"
+sleep 1
 afficher_chargement $pourcentage
 
 #install Nginx
@@ -81,7 +85,9 @@ if [[ $package1 == "oui" ]]; then
     sleep 1
     packages_installes=$((packages_installes + 1))
     pourcentage=$((packages_installes * 100 / total_packages))
-    printf ""
+    sleep 1
+printf "Status"
+sleep 1
     afficher_chargement $pourcentage
 fi
 
@@ -91,7 +97,9 @@ if [[ $package2 == "oui" ]]; then
     sleep 1
     packages_installes=$((packages_installes + 1))
     pourcentage=$((packages_installes * 100 / total_packages))
-    printf ""
+    sleep 1
+printf "Status"
+sleep 1
     afficher_chargement $pourcentage
 fi
 
@@ -101,7 +109,9 @@ if [[ $package3 == "oui" ]]; then
     sleep 1
     packages_installes=$((packages_installes + 1))
     pourcentage=$((packages_installes * 100 / total_packages))
-    printf ""
+    sleep 1
+printf "Status"
+sleep 1
     afficher_chargement $pourcentage
 fi
 
@@ -111,7 +121,9 @@ if [[ $package4 == "oui" ]]; then
     sleep 1
     packages_installes=$((packages_installes + 1))
     pourcentage=$((packages_installes * 100 / total_packages))
-    printf ""
+    sleep 1
+printf "Status"
+sleep 1
     afficher_chargement $pourcentage
 fi
 
@@ -121,49 +133,63 @@ if [[ $package5 == "oui" ]]; then
     sleep 1
     packages_installes=$((packages_installes + 1))
     pourcentage=$((packages_installes * 100 / total_packages))
-    printf ""
+    sleep 1
+printf "Status"
+sleep 1
     afficher_chargement $pourcentage
 
     source functions/enable_services.sh  
     sleep 1
     packages_installes=$((packages_installes + 1))
     pourcentage=$((packages_installes * 100 / total_packages))
-    printf ""
+    sleep 1
+printf "Status"
+sleep 1
     afficher_chargement $pourcentage
 
     source functions/update.sh  
     sleep 1
     packages_installes=$((packages_installes + 1))
     pourcentage=$((packages_installes * 100 / total_packages))
-    printf ""
+    sleep 1
+printf "Status"
+sleep 1
     afficher_chargement $pourcentage
 
     source functions/set_firewall.sh  
     sleep 1
     packages_installes=$((packages_installes + 1))
     pourcentage=$((packages_installes * 100 / total_packages))
-    printf ""
+    sleep 1
+printf "Status"
+sleep 1
     afficher_chargement $pourcentage
 
     source functions/update_firewall.sh  
     sleep 1
     packages_installes=$((packages_installes + 1))
     pourcentage=$((packages_installes * 100 / total_packages))
-    printf ""
+    sleep 1
+printf "Status"
+sleep 1
     afficher_chargement $pourcentage
 
     source functions/create_database.sh  
     sleep 1
     packages_installes=$((packages_installes + 1))
     pourcentage=$((packages_installes * 100 / total_packages))
-    printf ""
+    sleep 1
+printf "Status"
+sleep 1
     afficher_chargement $pourcentage
 
     source functions/install_wordpress.sh  
     sleep 1
     packages_installes=$((packages_installes + 1))
     pourcentage=$((packages_installes * 100 / total_packages))
-    printf ""
+    sleep 1
+printf "Status"
+sleep 1
     afficher_chargement $pourcentage
 
     #remove default Plugins, Themes wordpress
@@ -172,7 +198,9 @@ if [[ $package5 == "oui" ]]; then
         sleep 1
         packages_installes=$((packages_installes + 1))
         pourcentage=$((packages_installes * 100 / total_packages))
-        printf ""
+        sleep 1
+printf "Status"
+sleep 1
         afficher_chargement $pourcentage
     fi
 fi
