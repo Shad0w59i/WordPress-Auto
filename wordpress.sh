@@ -70,11 +70,11 @@ afficher_message_accueil
 # fi
 
 choices=$(poser_question "Sélectionnez les packages à installer :" \
-          "Nginx" "off" \
-          "PHP8.2" "off" \
-          "Mysql" "off" \
-          "Certbot" "off" \
-          "Wordpress" "off")
+          "Nginx" \
+          "PHP8.2" \
+          "Mysql" \
+          "Certbot" \
+          "Wordpress")
 
 # Vérifier si Wordpress a été sélectionné
 if echo "$choices" | grep -q "Wordpress"; then
