@@ -72,8 +72,6 @@ choices=$(poser_question "Sélectionnez les packages à installer :" \
           "Certbot" \
           "Wordpress")
 
-echo "Valeur : $choices"
-
 # Vérifier si Wordpress a été sélectionné
 if echo "$choices" | grep -q "Wordpress"; then
     # Poser la question sur la suppression des thèmes et plugins par défaut
@@ -82,8 +80,6 @@ if echo "$choices" | grep -q "Wordpress"; then
         choices="$extra_choice Extra"
     fi
 fi
-
-echo "Valeur : $choices"
 
 # Installation des packages sélectionnés
 echo "Installation en cours..."
