@@ -1,4 +1,5 @@
 #create mysql database
+echo
 printf -- "\e[0m\e[37m-> Création de base de données\e[0m";
 printf -- "\n";
 create_database () {
@@ -16,3 +17,5 @@ create_database () {
 }
 create_database
 sleep 1
+echo
+echo

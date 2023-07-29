@@ -1,4 +1,5 @@
 #delete default themes wordpress
+echo
 printf -- "\e[0m\e[37m-> Suppression des thèmes par défaut wordpress\e[0m";
 printf -- "\n";
 remove_themes () {
@@ -11,8 +12,11 @@ remove_themes () {
 }
 remove_themes
 sleep 1
+echo
+echo
 
 #delete default plugins wordpress
+echo
 printf -- "\e[0m\e[37m-> Suppression des thèmes par défaut wordpress\e[0m";
 printf -- "\n";
 remove_plugins () {
@@ -25,3 +29,5 @@ remove_plugins () {
 }
 remove_plugins
 sleep 1
+echo
+echo

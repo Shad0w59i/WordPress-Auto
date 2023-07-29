@@ -1,4 +1,5 @@
 #get wordpress
+echo
 printf -- "\e[0m\e[37m-> Téléchargement de wordpress\e[0m";
 printf -- "\n";
 get_wordpress () {
@@ -7,8 +8,11 @@ get_wordpress () {
 }
 get_wordpress
 sleep 1
+echo
+echo
 
 #decompress files
+echo
 printf -- "\e[0m\e[37m-> Décompression des fichiers\e[0m";
 printf -- "\n";
 decompress_files () {
@@ -17,8 +21,11 @@ decompress_files () {
 }
 decompress_files
 sleep 1
+echo
+echo
 
 #install wordpress
+echo
 printf -- "\e[0m\e[37m-> Installation de wordpress\e[0m";
 printf -- "\n";
 move_wordpress_directory () {
@@ -28,8 +35,11 @@ move_wordpress_directory () {
 }
 move_wordpress_directory
 sleep 1
+echo
+echo
 
 #configuring wordpress
+echo
 printf -- "\e[0m\e[37m-> Configuration de wordpress\e[0m";
 printf -- "\n";
 configure_wordpress () {
@@ -45,8 +55,11 @@ configure_wordpress () {
 }
 configure_wordpress
 sleep 1
+echo
+echo
 
 #set privilegies
+echo
 printf -- "\e[0m\e[37m-> Définition des privilèges\e[0m";
 printf -- "\n";
 set_privilegies () {
@@ -57,8 +70,11 @@ set_privilegies () {
 }
 set_privilegies
 sleep 1
+echo
+echo
 
 #install nginx site config
+echo
 printf -- "\e[0m\e[37m-> Configuration du serveur\e[0m";
 printf -- "\n";
 configure_nginx_site () {
@@ -70,8 +86,11 @@ configure_nginx_site () {
 }
 configure_nginx_site
 sleep 1
+echo
+echo
 
 #enable gzip
+echo
 printf -- "\e[0m\e[37m-> Activation de gzip\e[0m";
 printf -- "\n";
 enable_gzip () {
@@ -87,8 +106,11 @@ enable_gzip () {
 }
 enable_gzip
 sleep 1
+echo
+echo
 
 #configure domain
+echo
 printf -- "\e[0m\e[37m-> Configuration du domaine\e[0m";
 printf -- "\n";
 configure_domain () {
@@ -97,8 +119,11 @@ configure_domain () {
 }
 configure_domain
 sleep 1
+echo
+echo
 
 #install SSL certificate
+echo
 printf -- "\e[0m\e[37m-> Installation du SSL\e[0m";
 printf -- "\n";
 isntall_ssl () {
@@ -107,8 +132,11 @@ isntall_ssl () {
 }
 isntall_ssl
 sleep 1
+echo
+echo
 
 #post install clean up
+echo
 printf -- "\e[0m\e[37m-> Nettoyage\e[0m";
 printf -- "\n";
 clean_up () {
@@ -117,8 +145,11 @@ clean_up () {
 }
 clean_up 
 sleep 1
+echo
+echo
 
 #restart all services
+echo
 printf -- "\e[0m\e[37m-> Redémarrage des services\e[0m";
 printf -- "\n";
 restart_services () {
@@ -127,3 +158,5 @@ restart_services () {
 }
 restart_services
 sleep 1
+echo
+echo

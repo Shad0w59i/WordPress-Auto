@@ -1,4 +1,5 @@
 #install Mysql
+echo
 printf -- "\e[0m\e[37m-> Installation de Mysql\e[0m";
 printf -- "\n";
 install_dependencies () {
@@ -7,8 +8,11 @@ install_dependencies () {
 }
 install_dependencies
 sleep 1
+echo
+echo
 
 #configure mysql
+echo
 printf -- "\e[0m\e[37m-> Configuration de MySQL\e[0m";
 printf -- "\n";
 configure_mysql () {
@@ -22,3 +26,5 @@ configure_mysql () {
 }
 configure_mysql
 sleep 1
+echo
+echo

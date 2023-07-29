@@ -1,4 +1,5 @@
 #update and upgrade
+echo
 printf -- "\e[0m\e[37m-> Mise à jour\e[0m";
 printf -- "\n";
 update_and_upgrade () {
@@ -8,3 +9,5 @@ update_and_upgrade () {
 }
 update_and_upgrade
 sleep 1
+echo
+echo

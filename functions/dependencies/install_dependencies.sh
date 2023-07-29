@@ -1,4 +1,5 @@
 #install first dependencies
+echo
 printf -- "\e[0m\e[37m-> Installation des dépendances\e[0m";
 printf -- "\n";
 install_first_dependencies () {
@@ -7,8 +8,11 @@ install_first_dependencies () {
 }
 install_first_dependencies
 sleep 1
+echo
+echo
 
 #update
+echo
 printf -- "\e[0m\e[37m-> Mises à jour du système\e[0m";
 printf -- "\n";
 get_update () {
@@ -17,8 +21,11 @@ get_update () {
 }
 get_update
 sleep 1
+echo
+echo
 
 #install first dependencies
+echo
 printf -- "\e[0m\e[37m-> Installation des dépendances\e[0m";
 printf -- "\n";
 install_first_dependencies () {
@@ -27,3 +34,5 @@ install_first_dependencies () {
 }
 install_first_dependencies
 sleep 1
+echo
+echo

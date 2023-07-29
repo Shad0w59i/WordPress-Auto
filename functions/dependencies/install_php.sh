@@ -1,4 +1,5 @@
 #get repository
+echo
 printf -- "\e[0m\e[37m-> Téléchargement du repository PHP\e[0m";
 printf -- "\n";
 get_ppa () {
@@ -7,8 +8,11 @@ get_ppa () {
 }
 get_ppa
 sleep 1
+echo
+echo
 
 #install PHP
+echo
 printf -- "\e[0m\e[37m-> Installation de PHP8.2\e[0m";
 printf -- "\n";
 install_dependencies () {
@@ -17,8 +21,11 @@ install_dependencies () {
 }
 install_dependencies
 sleep 1
+echo
+echo
 
 #configure php
+echo
 printf -- "\e[0m\e[37m-> Configuration de PHP\e[0m";
 printf -- "\n";
 configure_php () {
@@ -39,3 +46,5 @@ configure_php () {
 }
 configure_php
 sleep 1
+echo
+echo

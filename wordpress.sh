@@ -32,7 +32,7 @@ afficher_chargement() {
     printf "["
     for ((i = 0; i < longueur_barre; i++)); do
         if ((i < remplissage)); then
-            printf "#"
+            printf "\e[32m#\e[0m"  # Affichage en vert
         else
             printf "-"
         fi
@@ -55,6 +55,7 @@ fi
 
 # Installation des packages sélectionnés
 echo "Installation en cours..."
+echo
 
 total_packages=14
 packages_installes=0
@@ -64,9 +65,7 @@ source functions/output_handling.sh
 sleep 1
 packages_installes=$((packages_installes + 1))
 pourcentage=$((packages_installes * 100 / total_packages))
-sleep 1
-printf "Status"
-sleep 1
+echo
 afficher_chargement $pourcentage
 
 #install dependencies
@@ -74,9 +73,7 @@ source functions/dependencies/install_dependencies.sh
 sleep 1
 packages_installes=$((packages_installes + 1))
 pourcentage=$((packages_installes * 100 / total_packages))
-sleep 1
-printf "Status"
-sleep 1
+echo
 afficher_chargement $pourcentage
 
 #install Nginx
@@ -85,9 +82,7 @@ if [[ $package1 == "oui" ]]; then
     sleep 1
     packages_installes=$((packages_installes + 1))
     pourcentage=$((packages_installes * 100 / total_packages))
-    sleep 1
-printf "Status"
-sleep 1
+    echo
     afficher_chargement $pourcentage
 fi
 
@@ -97,9 +92,7 @@ if [[ $package2 == "oui" ]]; then
     sleep 1
     packages_installes=$((packages_installes + 1))
     pourcentage=$((packages_installes * 100 / total_packages))
-    sleep 1
-printf "Status"
-sleep 1
+    echo
     afficher_chargement $pourcentage
 fi
 
@@ -109,9 +102,7 @@ if [[ $package3 == "oui" ]]; then
     sleep 1
     packages_installes=$((packages_installes + 1))
     pourcentage=$((packages_installes * 100 / total_packages))
-    sleep 1
-printf "Status"
-sleep 1
+    echo
     afficher_chargement $pourcentage
 fi
 
@@ -121,9 +112,7 @@ if [[ $package4 == "oui" ]]; then
     sleep 1
     packages_installes=$((packages_installes + 1))
     pourcentage=$((packages_installes * 100 / total_packages))
-    sleep 1
-printf "Status"
-sleep 1
+    echo
     afficher_chargement $pourcentage
 fi
 
@@ -133,63 +122,49 @@ if [[ $package5 == "oui" ]]; then
     sleep 1
     packages_installes=$((packages_installes + 1))
     pourcentage=$((packages_installes * 100 / total_packages))
-    sleep 1
-printf "Status"
-sleep 1
+    echo
     afficher_chargement $pourcentage
 
     source functions/enable_services.sh  
     sleep 1
     packages_installes=$((packages_installes + 1))
     pourcentage=$((packages_installes * 100 / total_packages))
-    sleep 1
-printf "Status"
-sleep 1
+    echo
     afficher_chargement $pourcentage
 
     source functions/update.sh  
     sleep 1
     packages_installes=$((packages_installes + 1))
     pourcentage=$((packages_installes * 100 / total_packages))
-    sleep 1
-printf "Status"
-sleep 1
+    echo
     afficher_chargement $pourcentage
 
     source functions/set_firewall.sh  
     sleep 1
     packages_installes=$((packages_installes + 1))
     pourcentage=$((packages_installes * 100 / total_packages))
-    sleep 1
-printf "Status"
-sleep 1
+    echo
     afficher_chargement $pourcentage
 
     source functions/update_firewall.sh  
     sleep 1
     packages_installes=$((packages_installes + 1))
     pourcentage=$((packages_installes * 100 / total_packages))
-    sleep 1
-printf "Status"
-sleep 1
+    echo
     afficher_chargement $pourcentage
 
     source functions/create_database.sh  
     sleep 1
     packages_installes=$((packages_installes + 1))
     pourcentage=$((packages_installes * 100 / total_packages))
-    sleep 1
-printf "Status"
-sleep 1
+    echo
     afficher_chargement $pourcentage
 
     source functions/install_wordpress.sh  
     sleep 1
     packages_installes=$((packages_installes + 1))
     pourcentage=$((packages_installes * 100 / total_packages))
-    sleep 1
-printf "Status"
-sleep 1
+    echo
     afficher_chargement $pourcentage
 
     #remove default Plugins, Themes wordpress
@@ -198,9 +173,7 @@ sleep 1
         sleep 1
         packages_installes=$((packages_installes + 1))
         pourcentage=$((packages_installes * 100 / total_packages))
-        sleep 1
-printf "Status"
-sleep 1
+        echo
         afficher_chargement $pourcentage
     fi
 fi
@@ -208,10 +181,10 @@ fi
 echo "*********************************************************************************"
 
 if [[ $package5 == "oui" ]]; then
-    echo "*Votre WordPress est disponible https://$h"
+    echo "Votre WordPress est disponible https://$h"
     echo "*********************************************************************************"
 fi
 
-echo "*Le journal d'installation complet est disponible dans /var/log/worplet.log"
-echo "*Le journal des erreurs est disponible dans /var/log/worplet_error.log"
+echo "Le journal d'installation complet est disponible dans /var/log/wordpress_auto.log"
+echo "Le journal des erreurs est disponible dans /var/log/wordpress_auto_error.log"
 echo "*********************************************************************************"

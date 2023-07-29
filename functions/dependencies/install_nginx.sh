@@ -1,4 +1,5 @@
 #install dependencies
+echo
 printf -- "\e[0m\e[37m-> Installation de Nginx\e[0m";
 printf -- "\n";
 install_dependencies () {
@@ -7,8 +8,11 @@ install_dependencies () {
 }
 install_dependencies
 sleep 1
+echo
+echo
 
 #configure nginx
+echo
 printf -- "\e[0m\e[37m-> Configuration de Nginx\e[0m";
 printf -- "\n";
 configure_nginx () {
@@ -17,3 +21,5 @@ configure_nginx () {
 }
 configure_nginx
 sleep 1
+echo
+echo

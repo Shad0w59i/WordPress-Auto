@@ -1,4 +1,5 @@
 #enable services
+echo
 printf -- "\e[0m\e[37m-> Activation des services\e[0m";
 printf -- "\n";
 enable_services () {
@@ -9,3 +10,5 @@ enable_services () {
 }
 enable_services
 sleep 1
+echo
+echo
