@@ -1,4 +1,3 @@
-echo ""
 #enable services
 printf -- "\e[0m\e[37m-> Activation des services\e[0m";
 printf -- "\n";
@@ -9,4 +8,4 @@ enable_services () {
 	printf -- "\e[90mRedémarrage des services : nginx, mariadb, php\e[22m"
 }
 enable_services
-echo ""
+sleep 1

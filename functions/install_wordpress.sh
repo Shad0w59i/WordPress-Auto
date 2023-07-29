@@ -1,4 +1,3 @@
-echo ""
 #get wordpress
 printf -- "\e[0m\e[37m-> Téléchargement de wordpress\e[0m";
 printf -- "\n";
@@ -7,8 +6,7 @@ get_wordpress () {
   printf -- "\e[90mTéléchargement de la dernière version de wordpress\e[22m"
 }
 get_wordpress
-echo ""
-echo ""
+sleep 1
 
 #decompress files
 printf -- "\e[0m\e[37m-> Décompression des fichiers\e[0m";
@@ -18,8 +16,7 @@ decompress_files () {
   printf -- "\e[90mFichiers décompressés\e[22m"
 }
 decompress_files
-echo ""
-echo ""
+sleep 1
 
 #install wordpress
 printf -- "\e[0m\e[37m-> Installation de wordpress\e[0m";
@@ -30,8 +27,7 @@ move_wordpress_directory () {
   printf -- "\e[90mWordpress installé\e[22m"
 }
 move_wordpress_directory
-echo ""
-echo ""
+sleep 1
 
 #configuring wordpress
 printf -- "\e[0m\e[37m-> Configuration de wordpress\e[0m";
@@ -48,8 +44,7 @@ configure_wordpress () {
   printf -- "\e[90mWordpress configuré\e[22m"
 }
 configure_wordpress
-echo ""
-echo ""
+sleep 1
 
 #set privilegies
 printf -- "\e[0m\e[37m-> Définition des privilèges\e[0m";
@@ -61,8 +56,7 @@ set_privilegies () {
   printf -- "\e[90mPrivilèges effectués\e[22m"
 }
 set_privilegies
-echo ""
-echo ""
+sleep 1
 
 #install nginx site config
 printf -- "\e[0m\e[37m-> Configuration du serveur\e[0m";
@@ -75,8 +69,7 @@ configure_nginx_site () {
   printf -- "\e[90mServeur configuré\e[22m"
 }
 configure_nginx_site
-echo ""
-echo ""
+sleep 1
 
 #enable gzip
 printf -- "\e[0m\e[37m-> Activation de gzip\e[0m";
@@ -93,8 +86,7 @@ enable_gzip () {
   printf -- "\e[90mgzip activé sur le serveur\e[22m"
 }
 enable_gzip
-echo ""
-echo ""
+sleep 1
 
 #configure domain
 printf -- "\e[0m\e[37m-> Configuration du domaine\e[0m";
@@ -104,19 +96,19 @@ configure_domain () {
   printf -- "\e[90mDomaine configuré\e[22m"
 }
 configure_domain
-echo ""
-echo ""
+sleep 1
 
 #install SSL certificate
-printf -- "\e[0m\e[37m-> Installation du SSL\e[0m";
-printf -- "\n";
-isntall_ssl () {
-  sudo certbot --nginx --agree-tos --register-unsafely-without-email -d ${server}${serverip} --redirect --post-hook "service nginx start" 1>>$logfile 2>>$errlog
-  printf -- "\e[90mSSL installé\e[22m"
-}
-isntall_ssl
-echo ""
-echo ""
+if [[ $package4 == "oui"]]; then
+  printf -- "\e[0m\e[37m-> Installation du SSL\e[0m";
+  printf -- "\n";
+  isntall_ssl () {
+    sudo certbot --nginx --agree-tos --register-unsafely-without-email -d ${server}${serverip} --redirect --post-hook "service nginx start" 1>>$logfile 2>>$errlog
+    printf -- "\e[90mSSL installé\e[22m"
+  }
+  isntall_ssl
+  sleep 1
+fi
 
 #post install clean up
 printf -- "\e[0m\e[37m-> Nettoyage\e[0m";
@@ -126,8 +118,7 @@ clean_up () {
   printf -- "\e[90mNettoyage terminé\e[22m"
 }
 clean_up 
-echo ""
-echo ""
+sleep 1
 
 #restart all services
 printf -- "\e[0m\e[37m-> Redémarrage des services\e[0m";
@@ -137,5 +128,4 @@ restart_services () {
   printf -- "\e[90mServices redémarrés\e[22m\e[0m"
 }
 restart_services
-echo ""
-echo ""
+sleep 1

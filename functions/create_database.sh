@@ -1,4 +1,3 @@
-echo ""
 #create mysql database
 printf -- "\e[0m\e[37m-> Création de base de données\e[0m";
 printf -- "\n";
@@ -16,4 +15,4 @@ create_database () {
 	printf -- "\e[90mPrivilèges flushed\e[22m"
 }
 create_database
-echo ""
+sleep 1

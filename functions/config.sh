@@ -1,6 +1,3 @@
-#version
-source functions/version.sh
-
 #get user input for domain
 echo -e ""
 echo -e "\e[0m\e[37mLaissez le domaine vide et appuyez sur Entrée pour utiliser l'IP externe du serveur au lieu du domaine pour cette installation !\e[0m"
@@ -41,6 +38,7 @@ check_domain () {
     fi
 }
 check_domain
+sleep 1
 
 #read server info
 cpu=$(grep -c ^processor /proc/cpuinfo) 1>>$logfile 2>>$errlog
@@ -60,6 +58,7 @@ server_info () {
     printf -- "\n";
 }
 server_info
+sleep 1
 
 #add swap file equal to total system memory size
 printf -- "\e[0m\e[37m-> Ajout du swap\e[0m";
@@ -74,8 +73,7 @@ add_swap_file () {
     printf -- "\e[90mTaille du swap définie sur $swapsize\e[22m";
 }
 add_swap_file
-echo ""
-echo ""
+sleep 1
 
 #increase maximum number of open files limit
 printf -- "\e[0m\e[37m-> Augmentation du nombre maximum de fichiers ouverts\e[0m";
@@ -88,8 +86,7 @@ increase_open_files () {
     printf -- "\e[90mLimite maximale de fichiers ouverts fixée à $maxfiles\e[22m";
 }
 increase_open_files
-echo ""
-echo ""
+sleep 1
 
 #improve swappiness & cache pressure
 printf -- "\e[0m\e[37m-> Amélioration de la perméabilité et de la pression du cache\e[0m";
@@ -102,8 +99,7 @@ improve_swappiness_cache_pressure () {
     printf -- "\e[90mPression de cache réglée à 50\e[22m";
 }
 improve_swappiness_cache_pressure
-echo ""
-echo ""
+sleep 1
 
 #generate a new sha256 password for mysql database
 generate_password () {
@@ -111,3 +107,4 @@ generate_password () {
     dbpass=$dbpassword
 }
 generate_password
+sleep 1

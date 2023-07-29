@@ -1,4 +1,3 @@
-echo ""
 #set standard firewall options
 printf -- "\e[0m\e[37m-> Paramétrage du firewall\e[0m";
 printf -- "\n";
@@ -12,4 +11,4 @@ set_firewall () {
 	printf -- "\e[90mFirewall configuré\e[22m"
 }
 set_firewall
-echo ""
+sleep 1

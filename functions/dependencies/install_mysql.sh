@@ -1,4 +1,13 @@
-echo ""
+#install Mysql
+printf -- "\e[0m\e[37m-> Installation de Mysql\e[0m";
+printf -- "\n";
+install_dependencies () {
+	sudo apt-get -y install mariadb-server mariadb-client 1>>$logfile 2>>$errlog
+	printf -- "\e[90mMysql a bien été installer\e[22m"
+}
+install_dependencies
+sleep 1
+
 #configure mysql
 printf -- "\e[0m\e[37m-> Configuration de MySQL\e[0m";
 printf -- "\n";
@@ -12,4 +21,4 @@ configure_mysql () {
 	printf -- "\e[90mPrivilèges flushed\e[22m"
 }
 configure_mysql
-echo ""
+sleep 1

@@ -1,4 +1,3 @@
-echo ""
 #add more rules to firewall
 printf -- "\e[0m\e[37m-> Mise à jour du firewall\e[0m";
 printf -- "\n";
@@ -9,4 +8,4 @@ update_firewall () {
 	printf -- "\e[90mFirewall mis à jour\e[22m"
 }
 update_firewall
-echo ""
+sleep 1
