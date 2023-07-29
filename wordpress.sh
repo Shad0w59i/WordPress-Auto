@@ -29,8 +29,8 @@ poser_question() {
     local question="$1"
     shift
     local options=("$@")
-    whiptail --title "Question" --yesno "$question" 10 60 3 "${options[@]}" 2>&1 >/dev/tty
-    echo $?
+    local choix=$(whiptail --title "Question" --checklist "$question" 20 60 10 "${options[@]}" 3>&1 1>&2 2>&3)
+    echo "$choix"
 }
 
 # Fonction pour afficher le chargement en pourcentage
@@ -53,13 +53,22 @@ afficher_chargement() {
 afficher_message_accueil
 
 # Poser les questions à l'utilisateur
-package1=$(poser_question "Voulez-vous installer Nginx ?" "non")
-package2=$(poser_question "Voulez-vous installer PHP8.2 ?" "non")
-package3=$(poser_question "Voulez-vous installer Mysql ?" "non")
-package4=$(poser_question "Voulez-vous installer Certbot (domaine uniquement) ?" "non")
-package5=$(poser_question "Voulez-vous installer Wordpress ?" "non")
-if [[ $package1 == "oui" ]]; then
-    package6=$(poser_question "Voulez-vous supprimer les thèmes, plugins par défaut de Wordpress ?" "non")
+# package1=$(poser_question "Voulez-vous installer Nginx ?" "non")
+# package2=$(poser_question "Voulez-vous installer PHP8.2 ?" "non")
+# package3=$(poser_question "Voulez-vous installer Mysql ?" "non")
+# package4=$(poser_question "Voulez-vous installer Certbot (domaine uniquement) ?" "non")
+# package5=$(poser_question "Voulez-vous installer Wordpress ?" "non")
+# if [[ $package1 == "oui" ]]; then
+#     package6=$(poser_question "Voulez-vous supprimer les thèmes, plugins par défaut de Wordpress ?" "non")
+# fi
+
+package1=$(poser_question "Voulez-vous installer Nginx ?" "off" "Nginx" "non")
+package2=$(poser_question "Voulez-vous installer PHP8.2 ?" "off" "PHP8.2" "non")
+package3=$(poser_question "Voulez-vous installer Mysql ?" "off" "Mysql" "non")
+package4=$(poser_question "Voulez-vous installer Certbot (domaine uniquement) ?" "off" "Certbot" "non")
+package5=$(poser_question "Voulez-vous installer Wordpress ?" "off" "Wordpress" "non")
+if [[ $package5 == "Wordpress" ]]; then
+    package6=$(poser_question "Voulez-vous supprimer les thèmes, plugins par défaut de Wordpress ?" "off" "Oui" "non")
 fi
 
 # Installation des packages sélectionnés
@@ -85,7 +94,7 @@ echo
 afficher_chargement $pourcentage
 
 #install Nginx
-if [[ $package1 == "oui" ]]; then
+if [[ $package1 == "Nginx" ]]; then
     source functions/dependencies/install_nginx.sh
     sleep 1
     packages_installes=$((packages_installes + 1))
@@ -95,7 +104,7 @@ if [[ $package1 == "oui" ]]; then
 fi
 
 #install PHP
-if [[ $package2 == "oui" ]]; then
+if [[ $package2 == "PHP8.2" ]]; then
     source functions/dependencies/install_php.sh
     sleep 1
     packages_installes=$((packages_installes + 1))
@@ -105,7 +114,7 @@ if [[ $package2 == "oui" ]]; then
 fi
 
 #install Mysql
-if [[ $package3 == "oui" ]]; then
+if [[ $package3 == "Mysql" ]]; then
     source functions/dependencies/install_mysql.sh
     sleep 1
     packages_installes=$((packages_installes + 1))
@@ -115,7 +124,7 @@ if [[ $package3 == "oui" ]]; then
 fi
 
 #certbot
-if [[ $package4 == "oui" ]]; then
+if [[ $package4 == "Certbot" ]]; then
     source functions/dependencies/install_certbot.sh
     sleep 1
     packages_installes=$((packages_installes + 1))
@@ -125,7 +134,7 @@ if [[ $package4 == "oui" ]]; then
 fi
 
 #install Wordpress
-if [[ $package5 == "oui" ]]; then
+if [[ $package5 == "Wordpress" ]]; then
     source functions/config.sh
     sleep 1
     packages_installes=$((packages_installes + 1))
@@ -176,7 +185,7 @@ if [[ $package5 == "oui" ]]; then
     afficher_chargement $pourcentage
 
     #remove default Plugins, Themes wordpress
-    if [[ $package6 == "oui" ]]; then
+    if [[ $package6 == "Oui" ]]; then
         source functions/remove_default_wordpress.sh
         sleep 1
         packages_installes=$((packages_installes + 1))
