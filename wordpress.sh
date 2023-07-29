@@ -66,12 +66,12 @@ afficher_message_accueil
 #     package6=$(poser_question "Voulez-vous supprimer les thèmes, plugins par défaut de Wordpress ?" "non")
 # fi
 
-choices=$(poser_question "Sélectionnez les packages à installer :" \
-          "Nginx" "off" \
-          "PHP8.2" "off" \
-          "Mysql" "off" \
-          "Certbot" "off" \
-          "Wordpress" "off")
+choices=$(poser_question "Sélectionnez les packages à installer :" "off" \
+          "Nginx" \
+          "PHP8.2" \
+          "Mysql" \
+          "Certbot" \
+          "Wordpress")
 
 # Vérifier si Wordpress a été sélectionné
 if echo "$choices" | grep -q "Wordpress"; then
