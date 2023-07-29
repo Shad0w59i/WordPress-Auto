@@ -27,7 +27,7 @@ afficher_message_accueil() {
 # Fonction pour poser une question avec une liste d'options
 poser_question() {
     local question="$1"
-    local default_value="$2"
+    local default_value=""
     shift 2
     local options=()
     for option in "$@"; do
@@ -66,7 +66,7 @@ afficher_message_accueil
 #     package6=$(poser_question "Voulez-vous supprimer les thèmes, plugins par défaut de Wordpress ?" "non")
 # fi
 
-choices=$(poser_question "Sélectionnez les packages à installer :" \
+choices=$(poser_question "Sélectionnez les packages à installer :" "off" \
           "Nginx" "off" \
           "PHP8.2" "off" \
           "Mysql" "off" \
