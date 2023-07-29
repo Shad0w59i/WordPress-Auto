@@ -54,7 +54,7 @@ package6=$(poser_question "Voulez-vous supprimer les thèmes, plugins par défau
 # Installation des packages sélectionnés
 echo "Installation en cours..."
 
-total_packages=10
+total_packages=14
 packages_installes=0
 
 #output handling

@@ -99,16 +99,14 @@ configure_domain
 sleep 1
 
 #install SSL certificate
-if [[ $package4 == "oui"]]; then
-  printf -- "\e[0m\e[37m-> Installation du SSL\e[0m";
-  printf -- "\n";
-  isntall_ssl () {
-    sudo certbot --nginx --agree-tos --register-unsafely-without-email -d ${server}${serverip} --redirect --post-hook "service nginx start" 1>>$logfile 2>>$errlog
-    printf -- "\e[90mSSL installé\e[22m"
-  }
-  isntall_ssl
-  sleep 1
-fi
+printf -- "\e[0m\e[37m-> Installation du SSL\e[0m";
+printf -- "\n";
+isntall_ssl () {
+  sudo certbot --nginx --agree-tos --register-unsafely-without-email -d ${server}${serverip} --redirect --post-hook "service nginx start" 1>>$logfile 2>>$errlog
+  printf -- "\e[90mSSL installé\e[22m"
+}
+isntall_ssl
+sleep 1
 
 #post install clean up
 printf -- "\e[0m\e[37m-> Nettoyage\e[0m";
