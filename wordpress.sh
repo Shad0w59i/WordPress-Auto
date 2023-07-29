@@ -67,17 +67,19 @@ afficher_message_accueil
 # fi
 
 choices=$(poser_question "Sélectionnez les packages à installer :" "off" \
-          "Nginx" "non" \
-          "PHP8.2" "non" \
-          "Mysql" "non" \
-          "Certbot" "non" \
-          "Wordpress" "non")
+          "Nginx" "off" \
+          "PHP8.2" "off" \
+          "Mysql" "off" \
+          "Certbot" "off" \
+          "Wordpress" "off")
 
 # Vérifier si Wordpress a été sélectionné
 if echo "$choices" | grep -q "Wordpress"; then
     # Poser la question sur la suppression des thèmes et plugins par défaut
-    extra_choice=$(poser_question "Supprimer les thèmes et plugins par défaut de Wordpress ?" "non")
-    choices="$choices $extra_choice"
+    extra_choice=$(whiptail --title "Question" --yesno "Supprimer les thèmes et plugins par défaut de Wordpress ?" 10 60 3>&1 1>&2 2>&3)
+    if [ "$?" -eq 0 ]; then
+        choices="$choices Extra"
+    fi
 fi
 
 # Installation des packages sélectionnés
