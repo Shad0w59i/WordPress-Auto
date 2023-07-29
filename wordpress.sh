@@ -77,13 +77,14 @@ echo "Valeur : $choices"
 # Vérifier si Wordpress a été sélectionné
 if echo "$choices" | grep -q "Wordpress"; then
     # Poser la question sur la suppression des thèmes et plugins par défaut
-    extra_choice=$(whiptail --title "Question" --yesno "Supprimer les thèmes et plugins par défaut de Wordpress ?" 10 60 3>&1 1>&2 2>&3)
-    if [ "$?" -eq 0 ]; then
-        choices="$extra_choice Extra"
+    if whiptail --title "Question" --yesno "Supprimer les thèmes et plugins par défaut de Wordpress ?" 10 60; then
+        choices="$choices Wordpress_Extra"
+    else
+        choices="$choices Wordpress"
     fi
 fi
 
-echo "Valeur2 : $extra_choice"
+echo "Valeur : $choices"
 
 # Installation des packages sélectionnés
 echo "Installation en cours..."
@@ -199,7 +200,7 @@ if echo "$choices" | grep -q "Wordpress"; then
     afficher_chargement $pourcentage
 
     #remove default Plugins, Themes wordpress
-    if echo "$extra_choice" | grep -q "oui"; then
+    if echo "$choices" | grep -q "Wordpress_Extra"; then
         source functions/remove_default_wordpress.sh
         sleep 1
         packages_installes=$((packages_installes + 1))
