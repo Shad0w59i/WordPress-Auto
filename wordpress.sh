@@ -62,13 +62,18 @@ afficher_message_accueil
 #     package6=$(poser_question "Voulez-vous supprimer les thèmes, plugins par défaut de Wordpress ?" "non")
 # fi
 
-package1=$(poser_question "Voulez-vous installer Nginx ?" "off" "Nginx" "non")
-package2=$(poser_question "Voulez-vous installer PHP8.2 ?" "off" "PHP8.2" "non")
-package3=$(poser_question "Voulez-vous installer Mysql ?" "off" "Mysql" "non")
-package4=$(poser_question "Voulez-vous installer Certbot (domaine uniquement) ?" "off" "Certbot" "non")
-package5=$(poser_question "Voulez-vous installer Wordpress ?" "off" "Wordpress" "non")
-if [[ $package5 == "Wordpress" ]]; then
-    package6=$(poser_question "Voulez-vous supprimer les thèmes, plugins par défaut de Wordpress ?" "off" "Oui" "non")
+choices=$(poser_question "Sélectionnez les packages à installer :" "off" \
+          "Nginx" "non" \
+          "PHP8.2" "non" \
+          "Mysql" "non" \
+          "Certbot" "non" \
+          "Wordpress" "non")
+
+# Vérifier si Wordpress a été sélectionné
+if echo "$choices" | grep -q "Wordpress"; then
+    # Poser la question sur la suppression des thèmes et plugins par défaut
+    extra_choice=$(poser_question "Supprimer les thèmes et plugins par défaut de Wordpress ?" "non")
+    choices="$choices $extra_choice"
 fi
 
 # Installation des packages sélectionnés
@@ -94,7 +99,7 @@ echo
 afficher_chargement $pourcentage
 
 #install Nginx
-if [[ $package1 == "Nginx" ]]; then
+if echo "$choices" | grep -q "Nginx"; then
     source functions/dependencies/install_nginx.sh
     sleep 1
     packages_installes=$((packages_installes + 1))
@@ -104,7 +109,7 @@ if [[ $package1 == "Nginx" ]]; then
 fi
 
 #install PHP
-if [[ $package2 == "PHP8.2" ]]; then
+if echo "$choices" | grep -q "PHP8.2"; then
     source functions/dependencies/install_php.sh
     sleep 1
     packages_installes=$((packages_installes + 1))
@@ -114,7 +119,7 @@ if [[ $package2 == "PHP8.2" ]]; then
 fi
 
 #install Mysql
-if [[ $package3 == "Mysql" ]]; then
+if echo "$choices" | grep -q "Mysql"; then
     source functions/dependencies/install_mysql.sh
     sleep 1
     packages_installes=$((packages_installes + 1))
@@ -124,7 +129,7 @@ if [[ $package3 == "Mysql" ]]; then
 fi
 
 #certbot
-if [[ $package4 == "Certbot" ]]; then
+if echo "$choices" | grep -q "Certbot"; then
     source functions/dependencies/install_certbot.sh
     sleep 1
     packages_installes=$((packages_installes + 1))
@@ -134,7 +139,7 @@ if [[ $package4 == "Certbot" ]]; then
 fi
 
 #install Wordpress
-if [[ $package5 == "Wordpress" ]]; then
+if echo "$choices" | grep -q "Wordpress"; then
     source functions/config.sh
     sleep 1
     packages_installes=$((packages_installes + 1))
@@ -185,7 +190,7 @@ if [[ $package5 == "Wordpress" ]]; then
     afficher_chargement $pourcentage
 
     #remove default Plugins, Themes wordpress
-    if [[ $package6 == "Oui" ]]; then
+    if echo "$extra_choice" | grep -q "oui"; then
         source functions/remove_default_wordpress.sh
         sleep 1
         packages_installes=$((packages_installes + 1))
@@ -197,7 +202,7 @@ fi
 
 echo "*********************************************************************************"
 
-if [[ $package5 == "oui" ]]; then
+if echo "$choices" | grep -q "Wordpress"; then
     echo "Votre WordPress est disponible https://$h"
     echo "*********************************************************************************"
 fi
