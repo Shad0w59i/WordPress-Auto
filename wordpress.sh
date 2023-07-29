@@ -17,12 +17,8 @@ afficher_message_accueil() {
     echo "*********************************************************************************"
 }
 
-# Fonction pour poser une question avec une réponse par défaut
-# poser_question() {
-#     read -p "$1 [$2]: " reponse
-#     reponse=${reponse:-$2}
-#     echo "$reponse"
-# }
+# Fonction pour installer whiptail
+sudo apt-get install -y whiptail
 
 # Fonction pour poser une question avec une liste d'options
 poser_question() {
@@ -56,15 +52,6 @@ afficher_chargement() {
 afficher_message_accueil
 
 # Poser les questions à l'utilisateur
-# package1=$(poser_question "Voulez-vous installer Nginx ?" "non")
-# package2=$(poser_question "Voulez-vous installer PHP8.2 ?" "non")
-# package3=$(poser_question "Voulez-vous installer Mysql ?" "non")
-# package4=$(poser_question "Voulez-vous installer Certbot (domaine uniquement) ?" "non")
-# package5=$(poser_question "Voulez-vous installer Wordpress ?" "non")
-# if [[ $package1 == "oui" ]]; then
-#     package6=$(poser_question "Voulez-vous supprimer les thèmes, plugins par défaut de Wordpress ?" "non")
-# fi
-
 choices=$(poser_question "Sélectionnez les packages à installer :" \
           "Nginx" \
           "PHP8.2" \
@@ -207,9 +194,29 @@ if echo "$choices" | grep -q "Wordpress"; then
 fi
 
 echo "*********************************************************************************"
+echo "Informations sur le serveur";
+echo "\n";
+echo "vCPU: $cpu";
+echo "\n";
+echo "\e[RAM: $memorytotal Mb";
+echo "\n";
+echo "\e[STOCKAGE: $storagetotal";
+echo "\n";
+echo "*********************************************************************************"
 
 if echo "$choices" | grep -q "Wordpress"; then
     echo "Votre WordPress est disponible https://$h"
+    echo "*********************************************************************************"
+fi
+
+if echo "$choices" | grep -q "Mysql"; then
+    echo "Création de la base de données : puffme"
+    echo "Création de l'utilisateur : wppuffme | Mot de passe : $dbpass"
+    echo "*********************************************************************************"
+fi
+
+if echo "$choices" | grep -q "PHP8.2"; then
+    echo "version de PHP installée : PHP8.2"
     echo "*********************************************************************************"
 fi
 
