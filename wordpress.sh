@@ -33,11 +33,8 @@ poser_question() {
     for option in "$@"; do
         options+=("$option" "$default_value")
     done
-    PS3="$question "
-    select choix in "${options[@]}"; do
-        echo "$choix"
-        break
-    done
+    local choix=$(whiptail --title "Question" --separate-output --checklist "$question" 20 60 10 "${options[@]}" 3>&1 1>&2 2>&3)
+    echo "$choix"
 }
 
 # Fonction pour afficher le chargement en pourcentage
@@ -70,22 +67,19 @@ afficher_message_accueil
 # fi
 
 choices=$(poser_question "Sélectionnez les packages à installer :" \
-          "Nginx" \
-          "PHP8.2" \
-          "Mysql" \
-          "Certbot" \
-          "Wordpress")
+          "Nginx" "off" \
+          "PHP8.2" "off" \
+          "Mysql" "off" \
+          "Certbot" "off" \
+          "Wordpress" "off")
 
 # Vérifier si Wordpress a été sélectionné
 if echo "$choices" | grep -q "Wordpress"; then
     # Poser la question sur la suppression des thèmes et plugins par défaut
-    echo "Supprimer les thèmes et plugins par défaut de Wordpress ?"
-    select extra_choice in "oui" "non"; do
-        if [ "$extra_choice" = "oui" ] || [ "$extra_choice" = "non" ]; then
-            break
-        fi
-    done
-    choices="$choices $extra_choice"
+    extra_choice=$(whiptail --title "Question" --yesno "Supprimer les thèmes et plugins par défaut de Wordpress ?" 10 60 3>&1 1>&2 2>&3)
+    if [ "$?" -eq 0 ]; then
+        choices="$choices Extra"
+    fi
 fi
 
 # Installation des packages sélectionnés
